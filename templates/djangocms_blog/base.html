@@ -1,0 +1,58 @@
+{% extends CMS_TEMPLATE %}
+{% load cms_tags %}
+
+{% block meta %}
+    {% comment %}
+    This is needed if you can't add ``{% include "meta/meta.html" %}`` in the django CMS template attached to the blog
+    page or if you use djangocms-page-meta.
+
+    Please check the documentation at https://djangocms-blog.readthedocs.io/en/latest/features/meta.html for more
+    details about the correct template configuration for social media tags rendering.
+    {% endcomment %}
+    {% if meta %}
+        {% include "meta/meta.html" %}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock meta %}
+
+{% block content %}
+    <header style="background-color: #333; color: #fff; padding: 10px; margin: 1% 10% 2%; border-radius: 5px 5px 5px">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <a href="/" style="color: #fff; text-decoration: none; font-size: 24px; font-weight: bold;">СуперПуперБлог</a>
+        </div>
+        <nav>
+            <ul style="list-style: none; padding: 0; display: flex;">
+                <li style="margin-right: 15px;"><a href="/" style="color: #fff; text-decoration: none;">Главная</a></li>
+                <li style="margin-right: 15px;"><a href="/blog/" style="color: #fff; text-decoration: none;">Блог</a></li>
+                <li style="margin-right: 15px;"><a href="/about/" style="color: #fff; text-decoration: none;">О нас</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div style="display: flex; flex-direction: column; min-height: 100vh;">
+    <div class="app app-blog" style="flex: 1;">
+        {% block content_blog %}{% endblock %}
+    </div>
+
+<footer class="site-footer">
+    <div class="footer-left">
+        <p>г. Воронеж</p>
+        <p>+7 (999) 700 99 99 / cat@kokoc.com</p>
+    </div>
+    <div class="copyright">
+        © 2023 ООО «Кот кокос». Все права защищены. Перепечатка и любое использование материалов возможно только при наличии ссылки на первоисточник.
+    </div>
+    <div class="footer-right">
+        <a href="/">Главная</a>
+        <a href="/blog/">Блог</a>
+        <a href="/about/">О нас</a>
+        <a href="/contacts/">Контакты</a>
+    </div>
+</footer>
+
+
+</div>
+{% endblock content %}

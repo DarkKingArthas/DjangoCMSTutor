@@ -1,0 +1,18 @@
+{% extends "base_cms.html" %}
+{% load cms_tags sekizai_tags menu_tags%}
+{% load static %}
+
+<html lang="ru">
+    <head>
+        {% block head %}
+            {% addtoblock 'css' %}<link href="{% static 'assets/css/mystyle.css' %}" rel="stylesheet">{% endaddtoblock %}
+        <title>{% page_attribute "page_title" %}</title>
+        {% endblock head %}
+    </head>
+    <body>
+        {% block content %}
+            {% placeholder "page_content" %}
+            {% placeholder "text" %}
+        {% endblock content %}
+    </body>
+</html>
